@@ -16,9 +16,22 @@ public class Members implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
+    private String studentID;
+    private String biggestSecret;
+    private String favTvShow;
+    
     
     public Members() {
     }
+
+    public Members(String name, String studentID, String biggestSecret, String favTvShow) {
+        this.name = name;
+        this.studentID = studentID;
+        this.biggestSecret = biggestSecret;
+        this.favTvShow = favTvShow;
+    }
+    
         
     public Long getId() {
         return id;
@@ -27,32 +40,41 @@ public class Members implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    // TODO, delete this class, or rename to an Entity class that makes sense for what you are about to do
-    // Delete EVERYTHING below if you decide to use this class, it's dummy data used for the initial demo
-    private String dummyStr1;
-    private String dummyStr2;
 
-    public Members(String dummyStr1, String dummyStr2) {
-        this.dummyStr1 = dummyStr1;
-        this.dummyStr2 = dummyStr2;
+    public String getName() {
+        return name;
     }
 
-    public String getDummyStr1() {
-        return dummyStr1;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setDummyStr1(String dummyStr1) {
-        this.dummyStr1 = dummyStr1;
+    public String getStudentID() {
+        return studentID;
     }
 
-    public String getDummyStr2() {
-        return dummyStr2;
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
     }
 
-    public void setDummyStr2(String dummyStr2) {
-        this.dummyStr2 = dummyStr2;
+    public String getBiggestSecret() {
+        return biggestSecret;
     }
+
+    public void setBiggestSecret(String biggestSecret) {
+        this.biggestSecret = biggestSecret;
+    }
+
+    public String getFavTvShow() {
+        return favTvShow;
+    }
+
+    public void setFavTvShow(String favTvShow) {
+        this.favTvShow = favTvShow;
+    }
+
+
+
     
     
     
