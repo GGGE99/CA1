@@ -5,18 +5,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
  * Rename Class to a relevant name Add add relevant facade methods
  */
-public class FacadeExample {
+public class MemberFacade {
 
-    private static FacadeExample instance;
+    private static MemberFacade instance;
     private static EntityManagerFactory emf;
     
     //Private Constructor to ensure Singleton
-    private FacadeExample() {}
+    private MemberFacade() {}
     
     
     /**
@@ -24,10 +25,10 @@ public class FacadeExample {
      * @param _emf
      * @return an instance of this facade class.
      */
-    public static FacadeExample getFacadeExample(EntityManagerFactory _emf) {
+    public static MemberFacade getMemberFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new FacadeExample();
+            instance = new MemberFacade();
         }
         return instance;
     }
@@ -36,16 +37,17 @@ public class FacadeExample {
         return emf.createEntityManager();
     }
     
-    //TODO Remove/Change this before use
-    public long getRenameMeCount(){
+        public List<Member> getAllMembers() {
+                
         EntityManager em = emf.createEntityManager();
-        try{
-            long renameMeCount = (long)em.createQuery("SELECT COUNT(r) FROM RenameMe r").getSingleResult();
-            return renameMeCount;
-        }finally{  
+        try {
+              Query query = em.createNamedQuery("Members.getAll");
+              List<Member> member = query.getResultList();
+              return member;
+        }         
+        finally {
             em.close();
         }
-        
     }
 
 }
