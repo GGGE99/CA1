@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "member")
+@NamedQuery(name = "Members.getAll", query = "SELECT m FROM Member m")
 public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
