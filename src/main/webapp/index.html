@@ -16,45 +16,52 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr id="1">
                     <td>Marc ekstrom</td>
                     <td>me206</td>
                     <td>??????</td>
                 </tr>
-                <tr>
+                <tr id="2">
                     <td>Marcus</td>
                     <td>m?????</td>
                     <td>??????</td>
                 </tr>
-                <tr>
+                <tr id="3">
                     <td>Mads</td>
                     <td>m??????</td>
                     <td>???????</td>
                 </tr>
-                <tr>
+                <tr id="4">
                     <td>Albert</td>
                     <td>a?????</td>
                     <td>??????</td>
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary">Reload Names</button>
+        <button class="btn btn-primary" onclick="colorChange()">Reload Names</button>
 
 
         <script>
 
 
-                let url = "https://marcge.dk/CA-1/api/groupmembers";
-                fetch(url).then(res => res.json()).then(data => {
-                    console.log(data);
-                });
-            
+            let url = "https://marcge.dk/CA-1/api/groupmembers";
+            fetch(url).then(res => res.json()).then(data => {
+                console.log(data);
+            });
+
+            function colorChange() {
+                document.getElementById('1').style.backgroundColor = 'green';
+                document.getElementById('2').style.backgroundColor = 'blue';
+                document.getElementById('3').style.backgroundColor = 'orange';
+                document.getElementById('4').style.backgroundColor = 'red';
+            }
+
 
         </script>
 
 
         <h2>Links</h2>
-        <a href="https://docs.google.com/document/d/1M9jCPvA-En379yLAg0dhPZhrP1-suWksykwaUTNzw-g/edit?ts=5f608398">Contract</a><br>
+        <a href="contract.html">Contract</a><br>
         <a href="#">Jokes</a><br>
         <a href="https://github.com/GGGE99/CA1">Git repo</a><br>
         <a href="#">Cars</a>
