@@ -8,37 +8,6 @@
     <body>
         <h1>This is so fucking gay, guys</h1>
         <div id="table"></div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Student ID</th>
-                    <th scope="col">Favorit TV-series</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr id="1">
-                    <td>Marc ekstrom</td>
-                    <td>me206</td>
-                    <td>??????</td>
-                </tr>
-                <tr id="2">
-                    <td>Marcus</td>
-                    <td>m?????</td>
-                    <td>??????</td>
-                </tr>
-                <tr id="3">
-                    <td>Mads</td>
-                    <td>m??????</td>
-                    <td>???????</td>
-                </tr>
-                <tr id="4">
-                    <td>Albert</td>
-                    <td>a?????</td>
-                    <td>??????</td>
-                </tr>
-            </tbody>
-        </table>
         <button class="btn btn-primary" onclick="colorChange()">Reload Names</button>
 
 
@@ -56,8 +25,8 @@
                                 console.log(data)
                                 let newArray = data.map(x => `<tr><td>${x.name}</td><td>${x.studentID}</td></tr>${x.favTvShow}</td></tr>`)
                                 makeTable.innerHTML =
-                                        `<table>
-                    <thead><th>Name</th><th>Phone</th></thead>
+                                        `<table class="table">
+                    <thead><th>Name</th><th>StudentID</th><th>Favorite TV Show</th></thead>
                     ${newArray.join("")}
                 </table>`
                             })
