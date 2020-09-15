@@ -40,11 +40,27 @@
         </table>
         <button class="btn btn-primary">Reload Names</button>
 
+
+        <script>
+
+            function getData(id, fun) {
+                let url = "https://jsonplaceholder.typicode.com/users/" + id;
+                let retVal;
+                fetch(url).then(res => res.json()).then(data => {
+                    console.log(data);
+                });
+            }
+
+        </script>
+
+
         <h2>Links</h2>
         <a href="https://docs.google.com/document/d/1M9jCPvA-En379yLAg0dhPZhrP1-suWksykwaUTNzw-g/edit?ts=5f608398">Contract</a><br>
         <a href="#">Jokes</a><br>
         <a href="https://github.com/GGGE99/CA1">Git repo</a><br>
         <a href="#">Cars</a>
+
+
 
 
     </body>
