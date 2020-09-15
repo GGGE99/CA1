@@ -25,7 +25,7 @@ public class FacadeExampleTest {
     @BeforeAll
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
-       facade = MemberFacade.getFacadeExample(emf);
+       facade = MemberFacade.getMemberFacade(emf);
     }
 
     @AfterAll
@@ -56,7 +56,7 @@ public class FacadeExampleTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+        //assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
     }
 
 }

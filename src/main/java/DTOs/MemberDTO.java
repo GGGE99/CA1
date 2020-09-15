@@ -11,14 +11,14 @@ import entities.Member;
  *
  * @author madsa
  */
-public class MembersDTO {
+public class MemberDTO {
 
     private long id;
     private String name;
     private String studentID;
     private String favTvShow;
 
-    public MembersDTO(Member members) {
+    public MemberDTO(Member members) {
         this.id = members.getId();
         this.name = members.getName();
         this.studentID = members.getStudentID();

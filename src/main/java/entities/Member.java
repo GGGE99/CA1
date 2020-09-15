@@ -1,14 +1,17 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "member")
 @NamedQuery(name = "RenameMe.deleteAllRows", query = "DELETE from RenameMe")
 public class Member implements Serializable {
 
@@ -16,9 +19,13 @@ public class Member implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name", length = 30, nullable = false)
     private String name;
+    @Column(name = "student_id", length = 10, nullable = false)
     private String studentID;
+    @Column(name = "biggest_secret", length = 50, nullable = false)
     private String biggestSecret;
+    @Column(name = "fav_tv_show", length = 30, nullable = false)
     private String favTvShow;
     
     
