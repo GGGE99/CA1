@@ -1,7 +1,7 @@
 package facades;
 
 import utils.EMF_Creator;
-import entities.Members;
+import entities.Member;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -9,10 +9,11 @@ import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 //Uncomment the line below, to temporarily disable this test
-//@Disabled
+@Disabled
 public class FacadeExampleTest {
 
     private static EntityManagerFactory emf;
@@ -40,9 +41,7 @@ public class FacadeExampleTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new Members("Some txt", "More text"));
-            em.persist(new Members("aaa", "bbb"));
-
+            em.persist(new Member("Albert", "al-306", "Jeg er gay", "IDK"));
             em.getTransaction().commit();
         } finally {
             em.close();

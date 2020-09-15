@@ -5,7 +5,7 @@
  */
 package DTOs;
 
-import entities.Members;
+import entities.Member;
 
 /**
  *
@@ -18,7 +18,7 @@ public class MembersDTO {
     private String studentID;
     private String favTvShow;
 
-    public MembersDTO(Members members) {
+    public MembersDTO(Member members) {
         this.id = members.getId();
         this.name = members.getName();
         this.studentID = members.getStudentID();

@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name = "RenameMe.deleteAllRows", query = "DELETE from RenameMe")
-public class Members implements Serializable {
+public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,10 +22,10 @@ public class Members implements Serializable {
     private String favTvShow;
     
     
-    public Members() {
+    public Member() {
     }
 
-    public Members(String name, String studentID, String biggestSecret, String favTvShow) {
+    public Member(String name, String studentID, String biggestSecret, String favTvShow) {
         this.name = name;
         this.studentID = studentID;
         this.biggestSecret = biggestSecret;

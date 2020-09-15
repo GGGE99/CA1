@@ -1,6 +1,6 @@
 package facades;
 
-import entities.Members;
+import entities.Member;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
