@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 @Path("/groupmembers")
 public class GroupmembersResource {
 
-    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-    private static final MemberFacade FACADE =  MemberFacade.getMemberFacade(EMF);
+//    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
+//    private static final MemberFacade FACADE =  MemberFacade.getMemberFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
             
     @GET

@@ -43,13 +43,12 @@
 
         <script>
 
-            function getData(id, fun) {
-                let url = "https://jsonplaceholder.typicode.com/users/" + id;
-                let retVal;
+
+                let url = "https://marcge.dk/CA-1/api/groupmembers";
                 fetch(url).then(res => res.json()).then(data => {
                     console.log(data);
                 });
-            }
+            
 
         </script>
 
