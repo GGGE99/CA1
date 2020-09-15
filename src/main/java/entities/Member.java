@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "member")
-@NamedQuery(name = "RenameMe.deleteAllRows", query = "DELETE from RenameMe")
 public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
