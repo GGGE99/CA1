@@ -23,7 +23,7 @@ public class Member implements Serializable {
     private String name;
     @Column(name = "student_id", length = 10, nullable = false)
     private String studentID;
-    @Column(name = "biggest_secret", length = 50, nullable = false)
+    @Column(name = "biggest_secret", length = 100, nullable = false)
     private String biggestSecret;
     @Column(name = "fav_tv_show", length = 30, nullable = false)
     private String favTvShow;

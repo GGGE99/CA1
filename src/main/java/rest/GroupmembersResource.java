@@ -1,5 +1,6 @@
 package rest;
 
+import DTOs.MemberDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entities.Member;
@@ -16,20 +17,28 @@ import javax.ws.rs.core.MediaType;
 public class GroupmembersResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-    private static final MemberFacade FACADE =  MemberFacade.getMemberFacade(EMF);
+    private static final MemberFacade FACADE = MemberFacade.getMemberFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-            
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String demo() {
         return "{\"msg\":\"Hello World\"}";
     }
-    
+
     @Path("/all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllMembers() {
-        List<Member> allMembers = FACADE.getAllMembers();
-        return GSON.toJson(allMembers);  
+        List<MemberDTO> allMembers = FACADE.getAllMembers();
+        return GSON.toJson(allMembers);
+    }
+
+    @Path("/populate")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String populate() {
+        FACADE.populateDB();
+        return "4 Members has been added";
     }
 }
