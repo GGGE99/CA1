@@ -56,4 +56,13 @@ public class JokesResource {
         return GSON.toJson(randomJoke);
 
     }
+
+    @Path("/populate")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String populate() {
+        FACADE.populateDB();
+        return GSON.toJson("msg: DB populatet");
+
+    }
 }
