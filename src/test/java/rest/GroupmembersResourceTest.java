@@ -20,7 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 //Uncomment the line below, to temporarily disable this test
-@Disabled
+//@Disabled
 public class GroupmembersResourceTest {
 
     private static final int SERVER_PORT = 7777;
@@ -66,7 +66,7 @@ public class GroupmembersResourceTest {
         r2 = new Member("marcus", "mr-306", "Jeg er også gay", "IDK2");
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
+            em.createQuery("DELETE from Member").executeUpdate();
             em.persist(r1);
             em.persist(r2); 
             em.getTransaction().commit();
@@ -78,29 +78,19 @@ public class GroupmembersResourceTest {
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
-        given().when().get("/groupmembers").then().statusCode(200);
+        given().when().get("/groupmembers/all").then().statusCode(200);
     }
    
     //This test assumes the database contains two rows
     @Test
-    @Disabled
-    public void testDummyMsg() throws Exception {
+//    @Disabled
+    public void testGetAll() throws Exception {
+        
         given()
         .contentType("application/json")
-        .get("/groupmembers/").then()
+        .get("/groupmembers/all").then()
         .assertThat()
         .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("msg", equalTo("Hello World"));   
-    }
-    
-    @Test
-    @Disabled
-    public void testCount() throws Exception {
-        given()
-        .contentType("application/json")
-        .get("/groupmembers/count").then()
-        .assertThat()
-        .statusCode(HttpStatus.OK_200.getStatusCode())
-        .body("count", equalTo(2));   
+        .body("[0].id", equalTo(r2.getId().intValue()));   
     }
 }
