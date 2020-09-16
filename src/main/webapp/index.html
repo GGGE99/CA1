@@ -8,20 +8,24 @@
     <body>
         <h1>This is so fucking gay, guys</h1>
         <div id="table"></div>
-        <button class="btn btn-primary" onclick="colorChange()">Reload Names</button>
+        <button class="btn btn-primary" id="reloadNames">Reload Names</button>
 
 
         <script>
 
-           fetchAllMembers()
+            let length
+            fetchAllMembers()
 
-            function fetchAllMembers() {
+            async function fetchAllMembers() {
+
                 let url = "https://marcge.dk/CA/api/groupmembers/all";
                 fetch(url).then(res => res.json()).then(data => {
                     let makeTable = document.getElementById("table");
+
                     fetch(url)
                             .then(res => res.json()) //in flow1, just do it
-                            .then(data => { 
+                            .then(data => {
+                                length = data.length
                                 console.log(data)
                                 let newArray = data.map(x => `<tr id="${x.id}"><td>${x.name}</td><td>${x.studentID}</td><td>${x.favTvShow}</td></tr>`)
                                 makeTable.innerHTML =
@@ -33,13 +37,28 @@
                 })
             }
 
-
-            function colorChange() {
-                document.getElementById('1').style.backgroundColor = 'green';
-                document.getElementById('2').style.backgroundColor = 'blue';
-                document.getElementById('3').style.backgroundColor = 'orange';
-                document.getElementById('4').style.backgroundColor = 'red';
+            async function  colorChange() {
+                console.log("start");
+                let result = await fetchAllMembers()
+                console.log('promise resolved: ' + result)
+                console.log("hej");
+                for (var i = 1; i < length + 1; i++) {
+                    if (i % 4 === 0)
+                        document.getElementById(i.toString()).style.backgroundColor = 'green';
+                    if (i % 4 === 1)
+                        document.getElementById(i.toString()).style.backgroundColor = 'red';
+                    if (i % 4 === 2)
+                        document.getElementById(i.toString()).style.backgroundColor = 'blue';
+                    if (i % 4 === 3)
+                        document.getElementById(i.toString()).style.backgroundColor = 'yellow';
+                }
             }
+
+            document.getElementById("reloadNames").addEventListener("click", (evt) => {
+                evt.preventDefault();
+                colorChange()
+
+            })
 
 
         </script>

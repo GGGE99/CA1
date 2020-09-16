@@ -83,6 +83,7 @@ public class GroupmembersResourceTest {
    
     //This test assumes the database contains two rows
     @Test
+    @Disabled
     public void testDummyMsg() throws Exception {
         given()
         .contentType("application/json")
@@ -93,6 +94,7 @@ public class GroupmembersResourceTest {
     }
     
     @Test
+    @Disabled
     public void testCount() throws Exception {
         given()
         .contentType("application/json")

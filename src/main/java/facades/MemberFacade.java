@@ -55,9 +55,10 @@ public class MemberFacade {
         try {
             em.getTransaction().begin();
             em.persist(new Member("Marc Ekstrom", "ME-206", "Må i ikke vide xd", "Suits"));
-            em.persist(new Member("Marcus Ravn Jensen","MJ-757","Går i dameundertøj","Sherlock Holmes"));
+            em.persist(new Member("Marcus Ravn Jensen", "MJ-757", "Går i dameundertøj", "Sherlock Holmes"));
             em.persist(new Member("Mads Kristensen", "MK-613", "?XD", "House"));
-            em.persist(new Member("Albert Sylvester Løhde", "al-324","Har haft en  legoklods siddende fast i endetarmen siden jeg var 4 år gammel","Gossip girl"));
+            em.persist(new Member("Albert Sylvester Løhde", "al-324", "Har haft en  legoklods siddende fast i endetarmen siden jeg var 4 år gammel", "Gossip girl"));
+            em.persist(new Member("", "", "", ""));
             em.getTransaction().commit();
         } finally {
             em.close();
