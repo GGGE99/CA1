@@ -48,6 +48,7 @@
 
             document.getElementById("reloadNames").addEventListener("click", (evt) => {
                 evt.preventDefault();
+                snd.currentTime=0;
                 snd.play();
                 colorChange()
             })
