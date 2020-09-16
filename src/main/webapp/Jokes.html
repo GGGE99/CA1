@@ -9,16 +9,84 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
     </head>
     <body>
-        <div>TODO write content</div>
+        <table class="table" id="table">
 
-        
-        
-        
-        
+        </table>
+        <input id="input" type="text">
+        <button id="idbtn"> Get by ID </button>
+        <button id="allbtn"> Get all jokes </button>
+        <button id="randbtn"> Get random joke </button>
+
+
+
         <form method="get" action="index.html">
             <button type="submit"> Back </button>
         </form>
+        <script>
+            function fetchAllJokes() {
+                let url = "https://marcge.dk/CA/api/jokes/all";
+                let makeTable = document.getElementById("table");
+                fetch(url).then(res => res.json()).then(data => {
+                    length = data.length
+                    console.log(data)
+                    let newArray = data.map(x =>
+                            `<tr id="${x.id}"><td>${x.joke}</td><td>${x.reference}</td><td>${x.type}</td></tr>`)
+                    makeTable.innerHTML =
+                            `<table class="table">
+                                        <thead><th>Joke</th><th>Reference</th><th>Type</th></thead>
+                                        ${newArray.join("")}
+                                        </table>`
+                })
+            }
+            function fetchRandomJoke() {
+                let url = "https://marcge.dk/CA/api/jokes/random";
+                let makeTable = document.getElementById("table");
+                fetch(url).then(res => res.json()).then(data => {
+                    length = data.length
+                    console.log(data)
+                    let newArray = [data].map(x =>
+                            `<tr id="${x.id}"><td>${x.joke}</td><td>${x.reference}</td><td>${x.type}</td></tr>`)
+                    makeTable.innerHTML =
+                            `<table class="table">
+                                        <thead><th>Joke</th><th>Reference</th><th>Type</th></thead>
+                                        ${newArray.join("")}
+                                        </table>`
+                })
+            }
+            function fetchJokeById() {
+                let url = "https://marcge.dk/CA/api/jokes/" + document.getElementById("input").value;
+                let makeTable = document.getElementById("table");
+                fetch(url).then(res => res.json()).then(data => {
+                    length = data.length
+                    console.log(data)
+                    let newArray = [data].map(x =>
+                            `<tr id="${x.id}"><td>${x.joke}</td><td>${x.reference}</td><td>${x.type}</td></tr>`)
+                    makeTable.innerHTML =
+                            `<table class="table">
+                                        <thead><th>Joke</th><th>Reference</th><th>Type</th></thead>
+                                        ${newArray.join("")}
+                                        </table>`
+                })
+            }
+
+            document.getElementById("allbtn").addEventListener("click", (evt) => {
+                evt.preventDefault();
+                fetchAllJokes()
+            })
+
+            document.getElementById("idbtn").addEventListener("click", (evt) => {
+                evt.preventDefault();
+                fetchJokeById()
+            })
+
+            document.getElementById("randbtn").addEventListener("click", (evt) => {
+                evt.preventDefault();
+                fetchRandomJoke()
+            })
+        </script>
     </body>
 </html>
