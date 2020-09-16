@@ -4,6 +4,7 @@ import DTOs.JokeDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entities.Joke;
+import facades.JokesFacade;
 import facades.MemberFacade;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -22,7 +23,7 @@ import utils.EMF_Creator;
 public class JokesResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-    private static final JokeFacade FACADE = JokesFacade.getJokesFacade(EMF);
+    private static final JokesFacade FACADE = JokesFacade.getJokesFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @GET
@@ -43,7 +44,7 @@ public class JokesResource {
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public String getJokeById(@PathParam("id") int id) {
-        Joke joke = FACADE.getJokeById(id);
+        JokeDTO joke = FACADE.getJokeById(id);
         return GSON.toJson(joke);
     }
 
@@ -51,7 +52,7 @@ public class JokesResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getRandomJoke() {
-        Joke randomJoke = FACADE.getRandomJoke();
+        JokeDTO randomJoke = FACADE.getRandomJoke();
         return GSON.toJson(randomJoke);
 
     }

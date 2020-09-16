@@ -41,7 +41,7 @@ public class JokesFacade {
 
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("Joke.getAll");
+            Query query = em.createQuery("SELECT m FROM Joke m");
             List<JokeDTO> joke = query.getResultList();
             return joke;
         } finally {
@@ -51,7 +51,7 @@ public class JokesFacade {
     public JokeDTO getRandomJoke(){
               EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("Joke.getAll");
+            Query query = em.createNamedQuery("SELECT m FROM Joke m");
             List<JokeDTO> jokes = query.getResultList();
             
             int tal = (int) (Math.random()*jokes.size());
@@ -62,6 +62,19 @@ public class JokesFacade {
         } finally {
             em.close();
         }  
+    }
+    
+        public JokeDTO getJokeById(long id){
+        EntityManager em = emf.createEntityManager();
+        try {
+              Query query = em.createNamedQuery("SELECT m FROM Joke m WHERE m.id = :id");
+              query.setParameter("id", id);
+              JokeDTO joke = (JokeDTO) query.getSingleResult();
+              return joke;
+        }         
+        finally {
+            em.close();
+        }
     }
 
     public void populateDB() {
