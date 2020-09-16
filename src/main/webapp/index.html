@@ -13,35 +13,27 @@
 
         <script>
 
-            let length
+            let length = 0
             fetchAllMembers()
 
             async function fetchAllMembers() {
-
                 let url = "https://marcge.dk/CA/api/groupmembers/all";
-                fetch(url).then(res => res.json()).then(data => {
-                    let makeTable = document.getElementById("table");
-
-                    fetch(url)
-                            .then(res => res.json()) //in flow1, just do it
-                            .then(data => {
-                                length = data.length
-                                console.log(data)
-                                let newArray = data.map(x => `<tr id="${x.id}"><td>${x.name}</td><td>${x.studentID}</td><td>${x.favTvShow}</td></tr>`)
-                                makeTable.innerHTML =
-                                        `<table class="table">
-                    <thead><th>Name</th><th>StudentID</th><th>Favorite TV Show</th></thead>
-                    ${newArray.join("")}
-                </table>`
-                            })
+                let makeTable = document.getElementById("table");
+                await fetch(url).then(res => res.json()).then(data => {
+                    length = data.length
+                    console.log(data)
+                    let newArray = data.map(x =>
+                            `<tr id="${x.id}"><td>${x.name}</td><td>${x.studentID}</td><td>${x.favTvShow}</td></tr>`)
+                    makeTable.innerHTML =
+                            `<table class="table">
+                                        <thead><th>Name</th><th>StudentID</th><th>Favorite TV Show</th></thead>
+                                        ${newArray.join("")}
+                                        </table>`
                 })
             }
 
             async function  colorChange() {
-                console.log("start");
-                let result = await fetchAllMembers()
-                console.log('promise resolved: ' + result)
-                console.log("hej");
+                await fetchAllMembers()
                 for (var i = 1; i < length + 1; i++) {
                     if (i % 4 === 0)
                         document.getElementById(i.toString()).style.backgroundColor = 'green';
@@ -57,7 +49,6 @@
             document.getElementById("reloadNames").addEventListener("click", (evt) => {
                 evt.preventDefault();
                 colorChange()
-
             })
 
 
