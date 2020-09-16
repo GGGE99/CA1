@@ -51,12 +51,12 @@ public class JokesFacade {
     public JokeDTO getRandomJoke(){
               EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("SELECT m FROM Joke m");
-            List<JokeDTO> jokes = query.getResultList();
+            Query query = em.createQuery("SELECT m FROM Joke m");
+            List<Joke> jokes = query.getResultList();
             
             int tal = (int) (Math.random()*jokes.size());
             
-            JokeDTO joke = jokes.get(tal);
+            JokeDTO joke = new JokeDTO(jokes.get(tal));
             
             return joke;
         } finally {
@@ -67,10 +67,10 @@ public class JokesFacade {
         public JokeDTO getJokeById(long id){
         EntityManager em = emf.createEntityManager();
         try {
-              Query query = em.createNamedQuery("SELECT m FROM Joke m WHERE m.id = :id");
+              Query query = em.createQuery("SELECT m FROM Joke m WHERE m.id = :id");
               query.setParameter("id", id);
-              JokeDTO joke = (JokeDTO) query.getSingleResult();
-              return joke;
+              Joke joke = (Joke)query.getSingleResult();
+              return new JokeDTO(joke);
         }         
         finally {
             em.close();
