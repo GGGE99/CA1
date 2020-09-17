@@ -14,57 +14,88 @@ and open the template in the editor.
     <body>
         <div class="container">
             <div class="row">
-                <div>U gay</div>
-
-                <table class="table"></table>
-                <select class="custom-select col-md-3" style="width: 10%">
-                    <option selected>Id</option>
+                <table class="table" id="carTable"></table>
+                <select id="sort" class="custom-select col-md-3">
+                    <option selected value="0">Id</option>
                     <option value="1">Year</option>
-                    <option value="2">Model</option>
-                    <option value="3">Price</option>
-                    <option value="3">Make</option>
-                </select>
-                <br>
-                <select class="custom-select col-md-3" style="width: 10%">
-                    <option selected>Id</option>
-                    <option value="1">Year</option>
-                    <option value="2">Model</option>
-                    <option value="3">Price</option>
-                    <option value="3">Make</option>
-                </select>
-                <input class="form-control col-md-3" type="text">
-                <button class="btn btn-primary" id="Filter">Filter</button>
+                    <option value="2">Make</option>
+                    <option value="3">Model</option>
+                    <option value="4">Price</option>
 
+                </select>
+                <select id="filterList" class="custom-select col-md-3">
+                    <option selected value="0">Id under</option>
+                    <option value="1">Id over</option>
+                    <option value="2">Year under</option>
+                    <option value="3">Year over</option>
+
+                    <option value="4">Make (indeholder)</option>
+                    <option value="5">Model (Indeholder)</option>
+                    <option value="6">Price under</option>
+                    <option value="7">Price over</option>
+
+
+                </select>
+                <input id="filterInput" class="form-control col-md-3" type="text">
+                <button id="filterBtn" class="btn btn-primary">Filter</button>
             </div>
         </div>
-        <script>
-            fetchAllJokes()
-            
-            var snd = new Audio("IDK.mp3");
 
-            document.getElementById("Filter").addEventListener("click", (evt) => {
+        <script src="CarsFunctions.js"></script>
+        <script>
+            makeTable(fetchAll())
+            let sort = document.getElementById("sort")
+            let filterList = document.getElementById("filterList")
+            let filterBtn = document.getElementById("filterBtn")
+
+
+
+            sort.addEventListener("change", (evt) => {
                 evt.preventDefault()
-                snd.play()
+                if (sort.value === "0")
+                    sortId()
+                if (sort.value === "1")
+                    sortYear()
+                if (sort.value === "2")
+                    sortMake()
+                if (sort.value === "3")
+                    sortModel()
+                if (sort.value === "4")
+                    sortPrice()
             })
 
-            function fetchAllJokes() {
-                let url = "https://marcge.dk/CA/api/cars/all";
-                let makeTable = document.getElementById("table");
-                fetch(url).then(res => res.json()).then(data => {
-                    length = data.length
-                    console.log(data)
-//                    let newArray = data.map(x =>
-//                            `<tr id="${x.id}"><td>${x.joke}</td><td>${x.reference}</td><td>${x.type}</td></tr>`)
-//                    makeTable.innerHTML =
-//                            `<table class="table">
-//                                        <thead><th>Joke</th><th>Reference</th><th>Type</th></thead>
-//                                        ${newArray.join("")}
-//                                        </table>`
-                })
-            }
+            filterBtn.addEventListener("click", (evt) => {
+                evt.preventDefault()
+                let filterInput = document.getElementById("filterInput")
+
+                if (filterList.value === "0")
+                    filterId(1, filterInput.value)
+                if (filterList.value === "1")
+                    filterId(2, filterInput.value)
+                if (filterList.value === "2")
+                    filterYear(1, filterInput.value)
+                if (filterList.value === "3")
+                    filterYear(2, filterInput.value)
+                if (filterList.value === "4")
+                    filterMake(filterInput.value)
+                if (filterList.value === "5")
+                    filterModel(filterInput.value)
+                if (filterList.value === "6")
+                    filterPrice(1, filterInput.value)
+                if (filterList.value === "7")
+                    filterPrice(2, filterInput.value)
+
+                evt.preventDefault()
+            })
+
+
+
+
+
 
 
 
         </script>
+
     </body>
 </html>
