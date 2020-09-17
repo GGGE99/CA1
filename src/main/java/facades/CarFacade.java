@@ -46,7 +46,7 @@ public class CarFacade {
 
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("Cars.getAll");
+            Query query = em.createQuery("select c from Car c");
             List<CarDTO> member = query.getResultList();
             return member;
         } finally {
