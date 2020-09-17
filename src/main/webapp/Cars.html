@@ -17,30 +17,29 @@ and open the template in the editor.
                 <div>U gay</div>
 
                 <table class="table"></table>
-
-                <select class="custom-select col-md-4" style="width: 10%">
-                    <option selected>Id</option>
-                    <option value="1">Year</option>
-                    <option value="2">Model</option>
-                    <option value="3">Price</option>
-                    <option value="3">Make</option>
-                </select>
-                <br>
-                <select class="custom-select col-md-4" style="width: 10%">
-                    <option selected>Id</option>
-                    <option value="1">Year</option>
-                    <option value="2">Model</option>
-                    <option value="3">Price</option>
-                    <option value="3">Make</option>
-                </select>
-                <input class="form-control col-md-4" type="text">
-                <button class="btn btn-primary" id="Filter">Filter</button>
+                    <select class="custom-select col-md-3" style="width: 10%">
+                        <option selected>Id</option>
+                        <option value="1">Year</option>
+                        <option value="2">Model</option>
+                        <option value="3">Price</option>
+                        <option value="3">Make</option>
+                    </select>
+                    <br>
+                    <select class="custom-select col-md-3" style="width: 10%">
+                        <option selected>Id</option>
+                        <option value="1">Year</option>
+                        <option value="2">Model</option>
+                        <option value="3">Price</option>
+                        <option value="3">Make</option>
+                    </select>
+                    <input class="form-control col-md-3" type="text">
+                    <button class="btn btn-primary" id="Filter">Filter</button>
 
             </div>
         </div>
         <script>
             var snd = new Audio("IDK.mp3");
-            
+
             document.getElementById("Filter").addEventListener("click", (evt) => {
                 evt.preventDefault()
                 snd.play()
