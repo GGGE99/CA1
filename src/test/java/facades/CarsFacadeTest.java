@@ -94,7 +94,7 @@ public class CarsFacadeTest {
 
     @Test
     public void facadePopulateCarTest() {
-        //assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+        //assertEquals(2, facade.getRe MeCount(), "Expects two rows in the database");
         facade.populateDB();
         List<CarDTO> cars = facade.getAllCars();
         assertEquals(8, cars.size());
