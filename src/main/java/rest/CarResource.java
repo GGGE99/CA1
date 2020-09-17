@@ -28,9 +28,9 @@ public class CarResource {
     @Path("/all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAllMembers() {
-        List<CarDTO> allMembers = FACADE.getAllCars();
-        return GSON.toJson(allMembers);
+    public String getAllCars() {
+        List<CarDTO> allCars = FACADE.getAllCars();
+        return GSON.toJson(allCars);
     }
     
     
