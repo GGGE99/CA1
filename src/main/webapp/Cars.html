@@ -62,53 +62,15 @@ and open the template in the editor.
             let filterList = document.getElementById("filterList")
             let filterBtn = document.getElementById("filterBtn")
 
-
-
             sort.addEventListener("change", (evt) => {
                 evt.preventDefault()
-                if (sort.value === "0")
-                    sortId()
-                if (sort.value === "1")
-                    sortYear()
-                if (sort.value === "2")
-                    sortMake()
-                if (sort.value === "3")
-                    sortModel()
-                if (sort.value === "4")
-                    sortPrice()
+                sortChoice()
             })
 
             filterBtn.addEventListener("click", (evt) => {
                 evt.preventDefault()
-                let filterInput = document.getElementById("filterInput")
-
-                if (filterList.value === "0")
-                    filterId(1, filterInput.value)
-                if (filterList.value === "1")
-                    filterId(2, filterInput.value)
-                if (filterList.value === "2")
-                    filterYear(1, filterInput.value)
-                if (filterList.value === "3")
-                    filterYear(2, filterInput.value)
-                if (filterList.value === "4")
-                    filterMake(filterInput.value)
-                if (filterList.value === "5")
-                    filterModel(filterInput.value)
-                if (filterList.value === "6")
-                    filterPrice(1, filterInput.value)
-                if (filterList.value === "7")
-                    filterPrice(2, filterInput.value)
-
-                evt.preventDefault()
+                filterChoice()
             })
-
-
-
-
-
-
-
-
         </script>
 
     </body>

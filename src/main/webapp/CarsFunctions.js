@@ -26,109 +26,73 @@ async function makeTable(data) {
                 ${newArray.join("")}`
 }
 
-async function sortYear() {
+async function sortChoice() {
     let carArray = await fetchAll()
-    let newcacarArray = carArray.sort((a, b) => {
-        let aVal = a.year
-        let bVal = b.year
-        if (aVal < bVal)
-            return -1
-        if (aVal > bVal)
-            return 1
-        return 0
-    })
-    makeTable(newcacarArray)
-}
-async function sortId() {
-    let carArray = await fetchAll()
-    let newcacarArray = carArray.sort((a, b) => {
-        let aVal = a.id
-        let bVal = b.id
-        if (aVal < bVal)
-            return -1
-        if (aVal > bVal)
-            return 1
-        return 0
-    })
-    makeTable(newcacarArray)
+    console.log(carArray);
+    let tableArray
+    if (sort.value === "0")
+        tableArray = carArray.sort((a, b) => compare(a.id, b.id))
+    if (sort.value === "1")
+        tableArray = carArray.sort((a, b) => compare(a.year, b.year))
+    if (sort.value === "2")
+        tableArray = carArray.sort((a, b) => compare(a.make, b.make))
+    if (sort.value === "3")
+        tableArray = carArray.sort((a, b) => compare(a.model, b.model))
+    if (sort.value === "4")
+        tableArray = carArray.sort((a, b) => compare(a.price, b.price))
+
+    makeTable(tableArray)
 }
 
-async function sortPrice() {
+async function filterChoice() {
     let carArray = await fetchAll()
-    let newcacarArray = carArray.sort((a, b) => {
-        let aVal = a.price
-        let bVal = b.price
-        if (aVal < bVal)
-            return -1
-        if (aVal > bVal)
-            return 1
-        return 0
-    })
-    makeTable(newcacarArray)
+    let tableArray
+    let filterInput = document.getElementById("filterInput")
+
+    if (filterList.value === "0")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 1))
+    if (filterList.value === "1")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 2))
+    if (filterList.value === "2")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 1))
+    if (filterList.value === "3")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 2))
+    if (filterList.value === "6")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 1))
+    if (filterList.value === "7")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 2))
+
+    if (filterList.value === "4")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.make))
+    if (filterList.value === "5")
+        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.model))
+
+    makeTable(tableArray)
 }
 
-async function sortModel() {
-    let carArray = await fetchAll()
-    let newcacarArray = carArray.sort((a, b) => {
-        let aVal = a.model.toLowerCase()
-        let bVal = b.model.toLowerCase()
-        if (aVal < bVal)
-            return -1
-        if (aVal > bVal)
-            return 1
-        return 0
-    })
-    makeTable(newcacarArray)
+function compare(a, b) {
+    if (typeof a === "string")
+        a.toLowerCase()
+    if (typeof b === "string")
+        b.toLowerCase()
+    let aVal = a
+    let bVal = b
+    if (aVal < bVal)
+        return -1
+    if (aVal > bVal)
+        return 1
+    return 0
 }
 
-async function sortMake() {
-    let carArray = await fetchAll()
-    let newcacarArray = carArray.sort((a, b) => {
-        let aVal = a.make.toLowerCase()
-        let bVal = b.make.toLowerCase()
-        if (aVal < bVal)
-            return -1
-        if (aVal > bVal)
-            return 1
-        return 0
-    })
-    makeTable(newcacarArray)
-}
+function filterHigeOrLow(input, n, i) {
+    console.log(n);
+    if (i === 1)
+        return (n < input)
+    if (i === 2)
+        return (n > input)
+    if (typeof n === "string")
+        return n.toLowerCase().includes(input.toLowerCase())
+    
+    return null
 
-async function filterId(i, input) {
-    let carArray = await fetchAll()
-    let newcacarArray
-    if (i === 1)newcacarArray = carArray.filter(n => n.id < input)
-    if (i === 2)newcacarArray = carArray.filter(n => n.id > input)
-    makeTable(newcacarArray)
-}
-
-async function filterYear(i, input) {
-    let carArray = await fetchAll()
-    let newcacarArray
-    if (i === 1)newcacarArray = carArray.filter(n => n.year < input)
-    if (i === 2)newcacarArray = carArray.filter(n => n.year > input)
-    makeTable(newcacarArray)
-}
-
-async function filterPrice(i, input) {
-    let carArray = await fetchAll()
-    let newcacarArray
-    if (i === 1)newcacarArray = carArray.filter(n => n.price < input)
-    if (i === 2)newcacarArray = carArray.filter(n => n.price > input)
-    makeTable(newcacarArray)
-}
-
-async function filterMake(input) {
-    let carArray = await fetchAll()
-    let newcacarArray = carArray.filter(n => 
-    n.make.toLowerCase().includes(input.toLowerCase()))
-    makeTable(newcacarArray)
-}
-
-async function filterModel(input) {
-    let carArray = await fetchAll()
-    let newcacarArray = carArray.filter(n => 
-    n.model.toLowerCase().includes(input.toLowerCase()))
-    makeTable(newcacarArray)
 }
