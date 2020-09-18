@@ -40,7 +40,6 @@ async function sortChoice() {
         tableArray = carArray.sort((a, b) => compare(a.model, b.model))
     if (sort.value === "4")
         tableArray = carArray.sort((a, b) => compare(a.price, b.price))
-
     makeTable(tableArray)
 }
 
@@ -61,12 +60,10 @@ async function filterChoice() {
         tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 1))
     if (filterList.value === "7")
         tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 2))
-
     if (filterList.value === "4")
         tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.make))
     if (filterList.value === "5")
         tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.model))
-
     makeTable(tableArray)
 }
 
@@ -92,7 +89,5 @@ function filterHigeOrLow(input, n, i) {
         return (n > input)
     if (typeof n === "string")
         return n.toLowerCase().includes(input.toLowerCase())
-    
     return null
-
 }
