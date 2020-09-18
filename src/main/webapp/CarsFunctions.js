@@ -1,3 +1,5 @@
+let cars;
+
 async function fetchAll() {
     let url = "https://marcge.dk/CA/api/cars/all";
     let makeTable = document.getElementById("carTable");
@@ -27,44 +29,53 @@ async function makeTable(data) {
 }
 
 async function sortChoice() {
-    let carArray = await fetchAll()
+    let carArray 
+    if (cars === undefined) {
+        carArray = await fetchAll()
+    } else {
+        carArray = cars
+    }
     console.log(carArray);
-    let tableArray
     if (sort.value === "0")
-        tableArray = carArray.sort((a, b) => compare(a.id, b.id))
+        cars = carArray.sort((a, b) => compare(a.id, b.id))
     if (sort.value === "1")
-        tableArray = carArray.sort((a, b) => compare(a.year, b.year))
+        cars = carArray.sort((a, b) => compare(a.year, b.year))
     if (sort.value === "2")
-        tableArray = carArray.sort((a, b) => compare(a.make, b.make))
+        cars = carArray.sort((a, b) => compare(a.make, b.make))
     if (sort.value === "3")
-        tableArray = carArray.sort((a, b) => compare(a.model, b.model))
+        cars = carArray.sort((a, b) => compare(a.model, b.model))
     if (sort.value === "4")
-        tableArray = carArray.sort((a, b) => compare(a.price, b.price))
-    makeTable(tableArray)
+        cars = carArray.sort((a, b) => compare(a.price, b.price))
+    makeTable(cars)
 }
 
 async function filterChoice() {
-    let carArray = await fetchAll()
-    let tableArray
+        let carArray 
+    if (cars === undefined) {
+        carArray = await fetchAll()
+    } else {
+        carArray = cars
+    }
+
     let filterInput = document.getElementById("filterInput")
 
     if (filterList.value === "0")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 1))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 1))
     if (filterList.value === "1")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 2))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 2))
     if (filterList.value === "2")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 1))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 1))
     if (filterList.value === "3")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 2))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 2))
     if (filterList.value === "6")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 1))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 1))
     if (filterList.value === "7")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 2))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 2))
     if (filterList.value === "4")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.make))
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.make))
     if (filterList.value === "5")
-        tableArray = carArray.filter(n => filterHigeOrLow(filterInput.value, n.model))
-    makeTable(tableArray)
+        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.model))
+    makeTable(cars)
 }
 
 function compare(a, b) {
