@@ -28,14 +28,22 @@ async function makeTable(data) {
                 ${newArray.join("")}`
 }
 
+async function ReverseOrResetCars(reverse) {
+    cars = await getCars()
+    if(reverse === true) cars.reverse()
+    if (reverse === false) cars = await fetchAll()
+    makeTable(cars)
+}
+
+async function getCars() {
+    if (cars === undefined)
+        return await fetchAll()
+    return cars
+}
+
 async function sortChoice() {
-    let carArray 
-    if (cars === undefined) {
-        carArray = await fetchAll()
-    } else {
-        carArray = cars
-    }
-    console.log(carArray);
+    let carArray = await getCars()
+
     if (sort.value === "0")
         cars = carArray.sort((a, b) => compare(a.id, b.id))
     if (sort.value === "1")
@@ -50,12 +58,7 @@ async function sortChoice() {
 }
 
 async function filterChoice() {
-        let carArray 
-    if (cars === undefined) {
-        carArray = await fetchAll()
-    } else {
-        carArray = cars
-    }
+    let carArray = await fetchAll()
 
     let filterInput = document.getElementById("filterInput")
 
