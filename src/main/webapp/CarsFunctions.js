@@ -30,8 +30,10 @@ async function makeTable(data) {
 
 async function ReverseOrResetCars(reverse) {
     cars = await getCars()
-    if(reverse === true) cars.reverse()
-    if (reverse === false) cars = await fetchAll()
+    if (reverse === true)
+        cars.reverse()
+    if (reverse === false)
+        cars = await fetchAll()
     makeTable(cars)
 }
 
@@ -59,25 +61,24 @@ async function sortChoice() {
 
 async function filterChoice() {
     let carArray = await fetchAll()
-
     let filterInput = document.getElementById("filterInput")
 
     if (filterList.value === "0")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 1))
+        cars = carArray.filter(n => n.id < filterInput.value)
     if (filterList.value === "1")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.id, 2))
+        cars = carArray.filter(n => n.id > filterInput.value)
     if (filterList.value === "2")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 1))
+        cars = carArray.filter(n => n.year < filterInput.value)
     if (filterList.value === "3")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.year, 2))
+        cars = carArray.filter(n => n.year > filterInput.value)
     if (filterList.value === "6")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 1))
+        cars = carArray.filter(n => n.price < filterInput.value)
     if (filterList.value === "7")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.price, 2))
+        cars = carArray.filter(n => n.price > filterInput.value)
     if (filterList.value === "4")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.make))
+        cars = carArray.filter(n => n.make.toLowerCase().includes(filterInput.value.toLowerCase()))
     if (filterList.value === "5")
-        cars = carArray.filter(n => filterHigeOrLow(filterInput.value, n.model))
+        cars = carArray.filter(n => n.model.toLowerCase().includes(filterInput.value.toLowerCase()))
     makeTable(cars)
 }
 
@@ -93,15 +94,4 @@ function compare(a, b) {
     if (aVal > bVal)
         return 1
     return 0
-}
-
-function filterHigeOrLow(input, n, i) {
-    console.log(n);
-    if (i === 1)
-        return (n < input)
-    if (i === 2)
-        return (n > input)
-    if (typeof n === "string")
-        return n.toLowerCase().includes(input.toLowerCase())
-    return null
 }
